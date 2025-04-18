@@ -1,0 +1,62 @@
+POST http://localhost:3000/api/auth/signup HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test1",
+	"email": "test1@test.com",
+	"password": "password",
+	"role": "instructor"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login HTTP/1.1
+content-type: application/json
+
+{
+	"email": "test1@test.com",
+	"password": "password"
+}
+
+###
+
+POST http://localhost:3000/api/auth/refresh-token HTTP/1.1
+content-type: application/json
+
+{
+	
+}
+
+
+###
+POST http://localhost:3000/api/auth/logout HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZTJlOWI0MmNjMDdiMDBmMzYyMyIsImlhdCI6MTc0NDkwNDcyMywiZXhwIjoxNzQ0OTA1NjIzfQ.aNxFmRjAdUak5GPAmFcCYwKKbKkLD6hKz0wdYZ0Y_DQ
+
+{
+
+}
+
+###
+
+GET http://localhost:3000/api/me HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZTJlOWI0MmNjMDdiMDBmMzYyMyIsImlhdCI6MTc0NDkwNTc5OSwiZXhwIjoxNzQ0OTA2Njk5fQ.w9WhdOncxtA8NMkDc0SlVuaiGBlJmCvJIhH8jUvnlig
+
+{
+	
+}
+
+### Create a new course
+POST http://localhost:3000/api/courses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmQ4NjAyYzUyZGNhZDAyYTg3N2FiMSIsImlhdCI6MTc0NDY3NjE0MywiZXhwIjoxNzQ0Njc5NzQzfQ.i6PZNIaYV2WkGJkvmZa97GEhIcBphVfL0VklILbZLnk
+
+{
+  "title": "Introduction to JavaScript",
+  "description": "Learn the basics of JavaScript programming language",
+  "price": 29.99
+}
+
+### Get all courses
+GET http://localhost:3000/api/courses
