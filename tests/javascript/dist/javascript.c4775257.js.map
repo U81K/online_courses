@@ -1,0 +1,1 @@
+{"mappings":"AAAA,SAAS,cAAc,CAAC,OAAO,SAAS,GAAG","sources":["main.js"],"sourcesContent":["document.getElementById(\"app\").innerHTML = \"test\";"],"names":[],"version":3,"file":"javascript.c4775257.js.map","sourceRoot":"/__parcel_source_root/"}

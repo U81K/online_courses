@@ -1,6 +1,10 @@
 const express = require("express");
 const dotenv = require('dotenv');
 const cors = require("cors");
+const mongoose = require('mongoose');
+
+// Import Swagger config
+const swaggerConfig = require('./config/swagger');
 
 const connectDb = require("./config/db");
 
@@ -19,8 +23,11 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/courses", courseRoutes);
+
+// Swagger Documentation
+app.use('/api-docs', swaggerConfig.serve, swaggerConfig.setup);
 
 const Port = process.env.PORT || 3000;
 

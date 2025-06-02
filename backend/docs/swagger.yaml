@@ -1,0 +1,205 @@
+paths:
+  /api/auth/signup:
+    post:
+      tags:
+        - Authentication
+      summary: Register a new user
+      description: Create a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+                - role
+              properties:
+                username:
+                  type: string
+                  example: johndoe
+                email:
+                  type: string
+                  format: email
+                  example: john@example.com
+                password:
+                  type: string
+                  format: password
+                  example: Password123!
+                role:
+                  type: string
+                  enum: [student, instructor]
+                  example: student
+      responses:
+        201:
+          description: User registered successfully
+        400:
+          description: Invalid input or user already exists
+        500:
+          description: Server error
+
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login user
+      description: Authenticate a user and return tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: john@example.com
+                password:
+                  type: string
+                  format: password
+                  example: Password123!
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+                  user:
+                    type: object
+        401:
+          description: Invalid credentials
+        500:
+          description: Server error
+
+  /api/auth/refresh-token:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Get a new access token using a refresh token
+      responses:
+        200:
+          description: New access token generated
+        401:
+          description: Invalid refresh token
+        500:
+          description: Server error
+
+  /api/auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: logout
+      responses:
+        200:
+          description: logout successful
+        500:
+          description: Logout failed
+  
+  /api/users/me:
+    get:
+      tags:
+        - Users
+      summary: Get current user profile
+      description: | 
+        Retrieves the profile of the currently authenticated user.
+        **Authentication Required**: 
+        - Click the "Authorize" button at the top of the page
+        - Enter your JWT token in the format `Bearer {token}`
+        - The token should be obtained from the login endpoint response
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: User profile retrieved successfully
+        401:
+          description: Not authenticated
+        404:
+          description: User not found
+        500:
+          description: Server error
+
+  /api/courses:
+    get:
+      tags:
+        - Courses
+      summary: Get all courses
+      description: Retrieve all available courses
+      responses:
+        200:
+          description: List of courses
+        500:
+          description: Server error
+    
+    post:
+      tags:
+        - Courses
+      summary: Create a new course
+      description: Create a new course (instructors only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - description
+              properties:
+                title:
+                  type: string
+                  example: Introduction to JavaScript
+                description:
+                  type: string
+                  example: Learn the basics of JavaScript programming
+                price:
+                  type: number
+                  example: 49.99
+      responses:
+        201:
+          description: Course created successfully
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden - Not an instructor
+        500:
+          description: Server error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [student, instructor]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - username
+        - email
+        - role

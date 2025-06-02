@@ -24,7 +24,7 @@ POST http://localhost:3000/api/auth/refresh-token HTTP/1.1
 content-type: application/json
 
 {
-	
+ 
 }
 
 
@@ -39,9 +39,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZTJlO
 
 ###
 
-GET http://localhost:3000/api/me HTTP/1.1
+GET http://localhost:3000/api/users/me HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZTJlOWI0MmNjMDdiMDBmMzYyMyIsImlhdCI6MTc0NDkwNTc5OSwiZXhwIjoxNzQ0OTA2Njk5fQ.w9WhdOncxtA8NMkDc0SlVuaiGBlJmCvJIhH8jUvnlig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDExZTJlOWI0MmNjMDdiMDBmMzYyMyIsImlhdCI6MTc0ODE5MzEyNSwiZXhwIjoxNzQ4MTk0MDI1fQ.Fi8UiDxOl5V-JGP2vBer8fy09WrVGNOFY-Ol4Md_hsw
 
 {
 	

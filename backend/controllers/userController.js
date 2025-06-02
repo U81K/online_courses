@@ -14,7 +14,8 @@ exports.getUserProfile = async (req, res) => {
 				id: user.id,
 				username: user.username,
 				email: user.email,
-				role: user.role
+				role: user.role,
+				createdAt: user.createdAt,
 			}
 		)
 	} catch(error){
